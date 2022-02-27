@@ -1,3 +1,10 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    control-plane: {{ .Values.helloworld.fullname }}
+  name: {{ .Values.installation.namespace }}
+---
 apiVersion: apps.kruise.io/v1alpha1
 kind: CloneSet
 metadata:
