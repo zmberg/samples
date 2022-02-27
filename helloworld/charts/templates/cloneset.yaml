@@ -1,5 +1,5 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: apps.kruise.io/v1alpha1
+kind: CloneSet
 metadata:
   name: {{ .Values.helloworld.fullname }}
   labels:
@@ -8,11 +8,11 @@ spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- toYaml .Values.helloworld.labels | nindent 4 }}
+      {{- toYaml .Values.helloworld.labels | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- toYaml .Values.helloworld.labels | nindent 4 }}
+        {{- toYaml .Values.helloworld.labels | nindent 8 }}
     spec:
       containers:
         - name: {{ .Chart.Name }}
