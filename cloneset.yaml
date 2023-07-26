@@ -42,3 +42,27 @@ spec:
                   fieldPath: status.podIP
             - name: NODE_NAME
               value: version1
+---
+apiVersion: rollouts.kruise.io/v1alpha1
+kind: Rollout
+metadata:
+  name: rollouts-demo
+spec:
+  objectRef:
+    workloadRef:
+      apiVersion: apps.kruise.io/v1alpha1
+      kind: CloneSet
+      name: echoserver
+  strategy:
+    canary:
+      steps:
+        - weight: 20
+          pause: {}
+        - weight: 40
+          pause: {duration: 10}
+        - weight: 60
+          pause: {duration: 10}
+        - weight: 80
+          pause: {duration: 10}
+        - weight: 100
+          pause: {duration: 0}
